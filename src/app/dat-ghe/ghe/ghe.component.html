@@ -1,0 +1,14 @@
+<ng-container *ngIf="!itemGhe.trangThai; else ghedatdat">
+  <button
+    (click)="datGhe()"
+    [ngClass]="{ 'btn-warning': status }"
+    class="m-2 btn btn-secondary"
+  >
+    {{ itemGhe.soGhe }}
+  </button>
+</ng-container>
+<ng-template #ghedatdat>
+  <button class="m-2 btn btn-danger" disabled style="cursor: not-allowed">
+    {{ itemGhe.soGhe }}
+  </button>
+</ng-template>

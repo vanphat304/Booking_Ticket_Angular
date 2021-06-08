@@ -1,0 +1,17 @@
+<div class="item">
+  <div class="item__img">
+    <img [src]="itemFilm.hinhAnh" alt="" />
+  </div>
+  <div class="item__title">
+    <h5>
+      <a href="#">{{ itemFilm.tenPhim }}</a>
+    </h5>
+    <p>{{ itemFilm.ngayKhoiChieu }}</p>
+  </div>
+  <div class="item__detail">
+    <button><a routerLink="/detail/{{ itemFilm.maPhim }}">chi tiết</a></button>
+    <button><a routerLink="/detail/{{ itemFilm.maPhim }}">mua ve</a></button>
+    <p><span>thời lượng: </span>{{ itemFilm.thoiLuong }}</p>
+    <p><span>thể loại: </span>{{ itemFilm.theLoai }}</p>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+<div class="my-container">
+  <div class="header">
+    <div class="img-logo">
+      <a routerLink=""
+        ><img src="../../../assets/img/touchcinema.png" alt=""
+      /></a>
+    </div>
+    <ul class="list-item">
+      <li><span>01:chọn ghế & thanh toán</span></li>
+      <li>02:kết quả đặt vé</li>
+    </ul>
+  </div>
+  <div class="navigation">
+    <ul>
+      <li>{{ tongTien }}:VND</li>
+      <li>
+        <p>{{ tenPhim }}</p>
+        <p>{{ thoiGianBD }}</p>
+      </li>
+      <li>
+        <p>
+          danh sách ghế đã chọn :
+          <span *ngFor="let ghe of danhSachGheDangDat">{{ ghe.tenGhe }} </span>
+        </p>
+      </li>
+    </ul>
+    <button (click)="updateArray()">thanh toán</button>
+  </div>
+  <div class="main">
+    <div class="main__left">
+      <ul>
+        <li><button></button> <span>ghế có thể đặt </span></li>
+
+        <li><button></button> <span>ghế đang chọn</span></li>
+
+        <li><button></button> <span>ghế đã có người chọn</span></li>
+
+        <li><button></button> <span>ghế đã có người đặt</span></li>
+
+        <li><button></button> <span>ghế không thể đặt</span></li>
+      </ul>
+    </div>
+    <div class="main__right">
+      <div class="main__right__screen">
+        <p>màn hình</p>
+      </div>
+      <div class="main__right__seat">
+        <div class="seat">
+          <app-ghe
+            *ngFor="let ghe of danhSachGhe"
+            [itemGhe]="ghe"
+            (emitStatus)="datGheParent($event, ghe)"
+          ></app-ghe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

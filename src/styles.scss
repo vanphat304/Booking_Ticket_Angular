@@ -1,1 +1,84 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+html {
+  line-height: 16px;
+  font-family: "Roboto", sans-serif;
+}
+body {
+  background-image: url("./assets/img/bg.jpg");
+}
+
+@keyframes appearance {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes spindetail {
+  from {
+    transform: rotateY(180deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+/*end key frames*/
+
+// .owl-nav {
+//   .owl_prev {
+//     position: absolute;
+//     top: 50%;
+//   }
+// }
+.owl-carousel .owl-nav.disabled {
+  display: block !important;
+}
+.owl-carousel {
+  .owl-nav .owl-prev {
+    display: block;
+    position: absolute;
+    top: 40%;
+    left: -3%;
+  }
+  .owl-nav .owl-next {
+    position: absolute;
+    top: 40%;
+    right: -2%;
+  }
+}
+
+/*css boostrap4*/
+
+.carousel-item {
+  img {
+    width: 100%;
+    height: 640px;
+  }
+}
+.carousel-indicators {
+  transform: translateY(80px);
+  li {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: solid 2px #ea3b92;
+    background-color: transparent;
+  }
+  li.active {
+    background-color: #ea3b92;
+  }
+}
+
+/*css boostrap4*/
+/**/
+.owl-dots {
+  display: none;
+}

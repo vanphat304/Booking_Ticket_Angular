@@ -1,0 +1,123 @@
+<app-header></app-header>
+<div class="container">
+  <div class="row">
+    <div class="col-5 mx-auto">
+      <form #formDangKy="ngForm" (ngSubmit)="dangKy(formDangKy.value)">
+        <h4 class="display-4">đăng ký</h4>
+        <div class="form-group">
+          <label for="">tài khoản</label>
+          <input
+            type="text"
+            class="form-control"
+            #taiKhoan="ngModel"
+            required
+            name="taiKhoan"
+            ngModel
+          />
+          <div
+            class="alert alert-danger form-control"
+            *ngIf="taiKhoan.errors && (taiKhoan.touched || taiKhoan.dirty)"
+          >
+            vùi lòng nhập dô tài khoản
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="">mật khẩu</label>
+          <input
+            type="password"
+            class="form-control"
+            #matKhau="ngModel"
+            required
+            minlength="7"
+            maxlength="20"
+            name="matKhau"
+            ngModel
+          />
+          <div
+            class="alert alert-danger form-control"
+            *ngIf="matKhau.errors && (matKhau.touched || matKhau.dirty)"
+          >
+            <div *ngIf="matKhau.errors.required">vùi lòng nhập mật khẩu</div>
+            <div *ngIf="matKhau.errors.minlength || matKhau.errors.maxlength">
+              mật khẩu phải từ 7 đến 20 ký tự
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="">họ tên</label>
+          <input
+            type="text"
+            class="form-control"
+            [pattern]="
+              '^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ' +
+              'ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ' +
+              'ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]+$'
+            "
+            #hoTen="ngModel"
+            required
+            name="hoTen"
+            ngModel
+          />
+          <div
+            class="alert alert-danger"
+            *ngIf="hoTen.errors && (hoTen.touched || hoTen.dirty)"
+          >
+            <div *ngIf="hoTen.errors.required">họ tên không để trống</div>
+            <div *ngIf="hoTen.errors.pattern">nhập họ tên không có số</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="">email</label>
+          <input
+            type="email"
+            class="form-control"
+            [pattern]="
+              '^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@' +
+              '[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{3,})$'
+            "
+            #email="ngModel"
+            required
+            name="email"
+            ngModel
+          />
+          <div
+            class="alert alert-danger"
+            *ngIf="email.errors && (email.touched || email.dirty)"
+          >
+            <div *ngIf="email.errors.required">email không cho để trống</div>
+            <div *ngIf="email.errors.pattern">email không đúng đinh dạng</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="">số điện thoại</label>
+          <input
+            type="text"
+            class="form-control"
+            pattern="^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$"
+            #sodt="ngModel"
+            required
+            name="sdt"
+            ngModel
+          />
+          <div
+            class="alert alert-danger"
+            *ngIf="sodt.errors && (sodt.touched || sodt.dirty)"
+          >
+            <div *ngIf="sodt.errors.required">không để trống số điện thoại</div>
+            <div *ngIf="sodt.errors.pattern">số điện thoại không đúng</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary" [disabled]="formDangKy.invalid">
+            đăng ký
+          </button>
+        </div>
+      </form>
+      <div>
+        <p>bạn đã có tài khoản</p>
+        <a routerLink="/auth/trangdangnhap">đăng nhập</a>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

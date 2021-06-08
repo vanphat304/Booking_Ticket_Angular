@@ -1,0 +1,60 @@
+<app-header></app-header>
+<div class="container">
+  <div class="row">
+    <div class="col-5 mx-auto">
+      <form #formDangNhap="ngForm" (ngSubmit)="dangNhap(formDangNhap.value)">
+        <h4 class="display-4">đăng nhập</h4>
+        <div class="form-group">
+          <label for="">tài khoản</label>
+          <input
+            type="text"
+            class="form-control"
+            #taiKhoan="ngModel"
+            required
+            name="taiKhoan"
+            ngModel
+          />
+          <div
+            class="alert alert-danger form-control"
+            *ngIf="taiKhoan.errors && (taiKhoan.touched || taiKhoan.dirty)"
+          >
+            vùi lòng nhập dô tài khoản
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="">mật khẩu</label>
+          <input
+            type="password"
+            class="form-control"
+            #matKhau="ngModel"
+            required
+            minlength="7"
+            maxlength="20"
+            name="matKhau"
+            ngModel
+          />
+          <div
+            class="alert alert-danger form-control"
+            *ngIf="matKhau.errors && (matKhau.touched || matKhau.dirty)"
+          >
+            <div *ngIf="matKhau.errors.required">vùi lòng nhập mật khẩu</div>
+            <div *ngIf="matKhau.errors.minlength || matKhau.errors.maxlength">
+              mật khẩu phải từ 7 đến 20 ký tự
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary" [disabled]="formDangNhap.invalid">
+            đăng nhập
+          </button>
+        </div>
+      </form>
+      <div>
+        <p>bạn chưa có tài khoản</p>
+        <a routerLink="/auth/trangdangky">đăng ký tài khoản</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

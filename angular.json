@@ -31,9 +31,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/owl.carousel/dist/assets/owl.carousel.min.css"
             ],
-            "scripts": []
+            "scripts": [ "node_modules/owl.carousel/dist/owl.carousel.min.js"]
           },
           "configurations": {
             "production": {
@@ -95,8 +96,10 @@
             ],
             "styles": [
               "src/styles.scss"
+              
             ],
-            "scripts": []
+            "scripts": [
+             ]
           }
         },
         "lint": {

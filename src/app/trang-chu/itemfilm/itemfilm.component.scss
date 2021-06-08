@@ -1,0 +1,65 @@
+.item {
+  &__title {
+    color: #fff;
+    text-align: center;
+    h5 {
+      margin-top: 15px;
+      a {
+        display: block;
+        color: #fff;
+        font-weight: 400;
+      }
+    }
+  }
+}
+.item__detail {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.72);
+  width: 250px;
+  height: 375px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  display: none;
+  animation: spindetail linear 0.3s;
+  button {
+    cursor: pointer;
+    width: 140px;
+    height: 40px;
+    margin-top: 5px;
+    border: none;
+    background-color: #382741;
+    background-image: url("../../../assets/img/icon-dat-ve.png");
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: center;
+    a {
+      margin-right: 25px;
+      text-decoration: none;
+      text-transform: uppercase;
+      color: #fff;
+    }
+  }
+  p {
+    font-weight: 400;
+    margin: 5px;
+    text-align: center;
+    span {
+      color: #000000;
+      font-weight: 500;
+    }
+  }
+}
+.item:hover {
+  .item__detail {
+    display: flex;
+  }
+}
+// .item:hover {
+//     .item__detail {
+//       display: flex;
+//     }
+//   }

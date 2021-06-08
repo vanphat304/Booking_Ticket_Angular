@@ -1,0 +1,77 @@
+<div class="my-container">
+  <div class="header">
+    <div class="img-logo">
+      <a routerLink=""
+        ><img src="../../../assets/img/touchcinema.png" alt=""
+      /></a>
+    </div>
+    <ul class="list-item">
+      <li><span>01:chọn ghế & thanh toán</span></li>
+      <li>02:kết quả đặt vé</li>
+    </ul>
+  </div>
+  <div class="navigation">
+    <div>
+      <h1>
+        <img src="../../../assets/img/icon-fb.png" alt="" /> {{ user.hoTen }}
+      </h1>
+    </div>
+    <ul>
+      <li>
+        tongTien: <span>{{ veDat.tongTien }}</span>
+      </li>
+      <li>
+        <p>{{ veDat.tenPhim }}</p>
+        <p>{{ veDat.thoiGianBD }}</p>
+      </li>
+      <li></li>
+    </ul>
+    <a routerLink=""><button>hoàn tất đặt vé</button></a>
+  </div>
+  <div class="main">
+    <p>thông tin đặt vé sẻ được gửi thông qua email</p>
+    <h2>
+      <img src="../../../assets/img/icon-dat-ve.png" alt="" /> mã vé :
+      <span>{{ veDat.maVe }}</span>
+    </h2>
+    <div class="main__list">
+      <div class="main__list__item">
+        <h1>thông tin vé</h1>
+        <p>
+          phim :<span>{{ veDat.tenPhim }}</span>
+        </p>
+        <p>
+          thời gian : <span>{{ veDat.thoiGianBD }}</span>
+        </p>
+        <p>
+          ghế đã chọn :
+          <span *ngFor="let slot of veDat.maChoNgoi">{{ slot.tenGhe }}</span>
+        </p>
+      </div>
+      <div class="main__list__item">
+        <h1>thông tin đặt vé</h1>
+        <p>
+          họ tên : <span>{{ veDat.taiKhoan.hoTen }}</span>
+        </p>
+        <p>
+          số điện thoại : <span>{{ veDat.taiKhoan.soDT }}</span>
+        </p>
+        <p>
+          email : <span>{{ veDat.taiKhoan.email }}</span>
+        </p>
+      </div>
+      <div class="main__list__item">
+        <h1>thông tin khác</h1>
+      </div>
+      <div class="main__list__item">
+        <h1>lưu ý :</h1>
+        <p>vé đã mua thì không trả lại</p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit
+          cum dolores ipsam quod animi laborum facilis sapiente, numquam vero
+          distinctio?
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

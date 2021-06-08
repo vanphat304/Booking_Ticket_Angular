@@ -1,0 +1,8 @@
+<div *ngIf="flag; else elsecontent" class="owl-carousel owl-theme">
+  <div class="item" *ngFor="let film of listFilmPlaying">
+    <app-itemfilm [itemFilm]="film"></app-itemfilm>
+  </div>
+</div>
+<ng-template #elsecontent>
+  <h1>data is loading</h1>
+</ng-template>

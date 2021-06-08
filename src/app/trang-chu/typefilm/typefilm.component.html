@@ -1,0 +1,16 @@
+<div class="showntime">
+  <div class="row">
+    <div class="col-12 text-center">
+      <button #target class="btn mr-2 mb-3" (click)="showFilm()">
+        phim dang chieu
+      </button>
+      <button class="btn mb-3" (click)="showFilmUp()">phim sap chieu</button>
+    </div>
+  </div>
+  <div *ngIf="status; else filmsapchieu">
+    <app-filmdangchieu> </app-filmdangchieu>
+  </div>
+  <ng-template #filmsapchieu>
+    <app-filmsapchieu></app-filmsapchieu>
+  </ng-template>
+</div>

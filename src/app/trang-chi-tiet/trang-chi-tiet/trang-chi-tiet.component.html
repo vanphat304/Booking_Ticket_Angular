@@ -1,0 +1,83 @@
+<app-header></app-header>
+<div class="container">
+  <div
+    style="
+      background-image: url('{{ itemfilm.hinhAnh }}');
+    "
+    class="movie-slider"
+  >
+    <div class="overlay"></div>
+    <div class="trailer">
+      <a class="video-play-button" data-toggle="modal" href="#trailer"
+        ><i class="fa fa-play"></i
+      ></a>
+    </div>
+  </div>
+  <div class="movie-detail">
+    <div class="poster">
+      <img [src]="itemfilm.hinhAnh" alt="" />
+    </div>
+    <div class="detail">
+      <div class="movie-name">
+        <h1>{{ itemfilm.tenPhim }}</h1>
+        <h2>{{ itemfilm.tenPhim }}</h2>
+      </div>
+      <div class="movie-under-name">
+        <p><span> thời Lượng :</span>{{ itemfilm.thoiLuong }}</p>
+        <p><span> khởi chiếu:</span> {{ itemfilm.ngayKhoiChieu }}</p>
+        <p><span> thể Loại: </span>{{ itemfilm.theLoai }}</p>
+        <p><span> đạo diễn: </span>{{ itemfilm.daoDien }}</p>
+        <p><span> diễn viên: </span> {{ itemfilm.dienVien }}</p>
+        <p>
+          <span> độ tuổi: </span>
+          C16 - PHIM CẤM PHỔ BIẾN ĐẾN KHÁN GIẢ DƯỚI 16 TUỔI
+        </p>
+        <button (click)="scroll(target)">Đặt vé</button>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <p>
+      {{ itemfilm.moTa }}
+    </p>
+  </div>
+  <div class="shown-time" id="lichchieu">
+    <h2 id="div">lịch chiếu</h2>
+    <div #target class="time">
+      <button *ngFor="let show of showntime">
+        <a routerLink="/datghe/{{ show.maLichChieu }}">{{ show.thoiGianBD }}</a>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="trailer">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          title="Đóng"
+          aria-hidden="true"
+        >
+          ×
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="video-container">
+          <iframe
+            width="853"
+            height="480"
+            src="https://www.youtube.com/embed/_QMLhx8oz3A"
+            title="YouTube video player"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
