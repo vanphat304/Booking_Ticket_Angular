@@ -13,10 +13,16 @@
         <input type="text" placeholder="tìm kiếm" />
         <i class="fas fa-search"></i>
       </div>
-      <div class="header__content__login-logout">
+      <div *ngIf="login; else elseLogin" class="header__content__login-logout">
         <a routerLink="/auth/trangdangnhap"><button>ĐĂNG NHẬP</button></a>
         <a routerLink="/auth/trangdangky"> <button>ĐĂNG KÝ</button></a>
       </div>
+      <ng-template #elseLogin>
+        <div class="header__content__login-logout">
+          <button style="cursor: unset">xin chao {{ name.taiKhoan }}</button>
+          <button (click)="dangXuat()">đăng xuất</button>
+        </div>
+      </ng-template>
     </div>
     <nav class="header__content__nav">
       <ul class="header__content__list">

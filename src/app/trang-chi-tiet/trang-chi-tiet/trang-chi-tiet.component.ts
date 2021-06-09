@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { FilmService } from 'src/app/service/film.service';
 @Component({
@@ -10,6 +11,7 @@ export class TrangChiTietComponent implements OnInit {
   objdiv: any;
   itemfilm: any;
   showntime: any;
+  safeUrl: SafeHtml = '';
   constructor(private film: FilmService, private activated: ActivatedRoute) {}
 
   ngOnInit(): void {
@@ -18,6 +20,7 @@ export class TrangChiTietComponent implements OnInit {
         this.film.getFilmDetail(params.id).subscribe({
           next: (result) => {
             this.itemfilm = result;
+            this.safeUrl = result.trailer;
             console.log(this.itemfilm);
           },
           error: (err) => {

@@ -12,6 +12,11 @@ const routes: Routes = [
       import('./dat-ghe/dat-ghe.module').then((m) => m.DatGheModule),
   },
   {
+    path: 'admin',
+    loadChildren: () =>
+      import('./admin/admin.module').then((m) => m.AdminModule),
+  },
+  {
     path: '',
     loadChildren: () =>
       import('./trang-chi-tiet/trang-chi-tiet.module').then(

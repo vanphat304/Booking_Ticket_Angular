@@ -1,0 +1,214 @@
+<div class="tab-content" id="myTabContent">
+  <div>
+    <h1 class="display-4 text-center text-warning">quản lý danh sách phim</h1>
+    <div class="container">
+      <form
+        #formQuanLyFilm="ngForm"
+        (ngSubmit)="addnewFilm(formQuanLyFilm.value)"
+        class="container__form"
+      >
+        <div class="container__form__input">
+          <input
+            type="text"
+            placeholder="nhập vào đường dẫn hình"
+            required
+            name="hinhAnh"
+            #hinhanh="ngModel"
+            ngModel
+          />
+        </div>
+        <span *ngIf="hinhanh.errors && (hinhanh.touched || hinhanh.dirty)">
+          *bắt buộc nhập</span
+        >
+        <div style="display: none" class="container__form__input">
+          <input type="text" placeholder="nhập vào mã phim" name="maPhim" />
+        </div>
+        <span id="idErr"></span>
+        <div class="container__form__input">
+          <input
+            type="text"
+            placeholder="nhập vào tên sản phim"
+            name="tenPhim"
+            required
+            ngModel
+            #tenPhim="ngModel"
+          />
+        </div>
+        <span *ngIf="tenPhim.errors && (tenPhim.touched || tenPhim.dirty)">
+          *tên phim bắt buộc nhập</span
+        >
+        <div class="container__form__input">
+          <textarea
+            placeholder="nhập vào thông tin mô tả"
+            id="Decription"
+            cols="50"
+            rows="5"
+            required
+            ngModel
+            name="moTa"
+            #moTa="ngModel"
+          ></textarea>
+        </div>
+        <span *ngIf="moTa.errors && (moTa.touched || moTa.dirty)">
+          *mô tả bắt buộc nhập</span
+        >
+        <div class="container__form__input">
+          <input
+            type="text"
+            placeholder="nhập vào đạo diễn"
+            name="daoDien"
+            required
+            ngModel
+            #daoDien="ngModel"
+          />
+        </div>
+        <span *ngIf="daoDien.errors && (daoDien.touched || daoDien.dirty)">
+          *đạo diễn bắt buộc nhập</span
+        >
+        <div class="container__form__input">
+          <input
+            placeholder="nhập vào diễn viên"
+            type="text"
+            name="dienVien"
+            required
+            ngModel
+            #dienVien="ngModel"
+          />
+        </div>
+        <span *ngIf="dienVien.errors && (dienVien.touched || dienVien.dirty)">
+          *diễn viên bắt buộc nhập</span
+        >
+        <div class="container__form__input">
+          <input
+            type="text"
+            name="trailer"
+            required
+            ngModel
+            #trailer="ngModel"
+            placeholder="trailer"
+          />
+        </div>
+        <span *ngIf="trailer.errors && (trailer.touched || trailer.dirty)">
+          *trailer bắt buộc nhập</span
+        >
+        <div class="container__form__input">
+          <input
+            type="text"
+            placeholder="thời lượng (phút) "
+            name="thoiLuong"
+            required
+            ngModel
+            #thoiLuong="ngModel"
+            pattern="^[1-9]\d*"
+          />
+        </div>
+        <p *ngIf="thoiLuong.errors && (thoiLuong.touched || thoiLuong.dirty)">
+          <span *ngIf="thoiLuong.errors.required"
+            >*thời lượng không cho để trống</span
+          >
+          <span *ngIf="thoiLuong.errors.pattern">*vui lòng nhập số</span>
+        </p>
+        <div class="container__form__input">
+          <input
+            placeholder="nhap vao ngay"
+            name="ngayKhoiChieu"
+            required
+            ngModel
+            #ngayKhoiChieu="ngModel"
+            type="date"
+          />
+        </div>
+        <p>
+          <span
+            *ngIf="
+              ngayKhoiChieu.errors &&
+              (ngayKhoiChieu.touched || ngayKhoiChieu.dirty)
+            "
+          >
+            *ngày khởi chiếu không để trống bắt buộc nhập</span
+          >
+        </p>
+        <button id="addNewProduct" class="btn btn-secondary mb-3">
+          thêm phim mới
+        </button>
+        <button
+          style="display: none"
+          id="idUpdate"
+          class="btn btn-secondary mb-3"
+        >
+          cập nhật
+        </button>
+      </form>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12"></div>
+      </div>
+      <div class="row">
+        <div>
+          <button
+            style="display: none"
+            id="cancelUpdate"
+            class="btn btn-secondary mb-3"
+          >
+            hủy
+          </button>
+        </div>
+      </div>
+      <div class="findproduct">
+        <input
+          id="idInput"
+          type="text"
+          placeholder="nhập vào mã hoặc tên sp để tìm kiếm"
+        />
+      </div>
+
+      <div>
+        <div class="table">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>hình ảnh</th>
+                <th>mã phim</th>
+                <th>tên phim</th>
+                <th>mô tả</th>
+                <th>đạo diễn</th>
+                <th>diễn viên</th>
+                <th>thời lượng</th>
+                <th>trailer</th>
+                <th>ngày khởi chiếu</th>
+                <th>xóa</th>
+                <th>sửa</th>
+              </tr>
+            </thead>
+            <tbody id="contentProduct">
+              <tr>
+                <td>
+                  <img style="width: 50px" src="" alt="" />
+                </td>
+                <td>item.id</td>
+                <td>item.name</td>
+                <td>item.description</td>
+                <td>item.price</td>
+                <td>item.inventory</td>
+                <td>item.rating</td>
+                <td>item.type</td>
+                <td>item.type</td>
+                <td>
+                  <button class="btn btn-danger">
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </td>
+                <td>
+                  <button class="btn btn-primary">
+                    <i class="fa fa-edit"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

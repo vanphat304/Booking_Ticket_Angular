@@ -1,0 +1,73 @@
+<div class="my-container">
+  <div class="navigation">
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <a>
+          <span class="icon"><i class="fab fa-megaport"></i></span>
+          <span class="title"><h2>navigation</h2></span>
+        </a>
+      </li>
+
+      <li class="nav-item" role="presentation">
+        <a routerLink="quanlyfilm">
+          <span class="icon"><i class="fab fa-megaport"></i></span>
+          <span class="title">quản lý phim</span>
+        </a>
+      </li>
+
+      <li class="nav-item" role="presentation">
+        <a routerLink="quanlylichchieu">
+          <span class="icon"><i class="fab fa-megaport"></i></span>
+          <span class="title">quản lý lịch chiếu</span>
+        </a>
+      </li>
+
+      <li class="nav-item" role="presentation">
+        <a routerLink="quanlyphongchieu">
+          <span class="icon"><i class="fab fa-megaport"></i></span>
+          <span class="title">quản lý phòng chiếu</span>
+        </a>
+      </li>
+
+      <li class="nav-item" role="presentation">
+        <a routerLink="quanlydatve">
+          <span class="icon"><i class="fab fa-megaport"></i></span>
+          <span class="title">quản lý đặt vé</span>
+        </a>
+      </li>
+
+      <li class="nav-item" role="presentation">
+        <a routerLink="quanlylinguoidung">
+          <span class="icon"><i class="fab fa-megaport"></i></span>
+          <span class="title">quản lý người dùng</span>
+        </a>
+      </li>
+
+      <li class="nav-item" role="presentation">
+        <a>
+          <span class="icon"><i class="fab fa-megaport"></i></span>
+          <span class="title">password</span>
+        </a>
+      </li>
+
+      <li class="nav-item" role="presentation">
+        <a (onlick)="dangXuat()">
+          <span class="icon"><i class="fab fa-megaport"></i></span>
+          <span class="title">sign uot</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="main">
+    <div class="topbar">
+      <div class="toggle" onclick="toggleMenu();"></div>
+      <div class="search">
+        <h1>ADMIN PAGE MANAGEMENT</h1>
+      </div>
+      <div class="user">
+        <img src="" alt="" />
+      </div>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+</div>

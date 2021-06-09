@@ -9,15 +9,21 @@ import { Router } from '@angular/router';
 export class TrangDangKyComponent implements OnInit {
   constructor(private auth: AuthService, private router: Router) {}
   dangKy(values: any) {
-    this.auth.signup(values).subscribe({
+    let obj: object = values;
+    this.auth.signup(obj).subscribe({
       next: (result) => {
         alert('đăng ký thành công');
         this.router.navigate(['/auth/trangdangnhap']);
       },
       error: (err) => {
         alert(err.error);
+        return;
       },
     });
+    this.auth.signupfa(obj).subscribe({
+      next: () => {},
+    });
+    console.log(values);
     console.log(values);
   }
   ngOnInit(): void {}

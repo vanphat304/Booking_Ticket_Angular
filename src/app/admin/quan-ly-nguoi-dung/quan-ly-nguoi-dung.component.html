@@ -1,0 +1,221 @@
+<div class="tab-content" id="myTabContent">
+  <div>
+    <h1 class="display-4 text-center text-warning">quản lý người dùng</h1>
+    <div class="container">
+      <form
+        #formDangKy="ngForm"
+        (ngSubmit)="addnewUser(formDangKy.value)"
+        class="container__form"
+      >
+        <div class="container__form__input">
+          <input
+            type="text"
+            placeholder="manguoi dung"
+            style="display: none"
+            name="maNguoiDung"
+            ngModel
+          />
+        </div>
+        <div class="container__form__input">
+          <input
+            type="text"
+            placeholder="tài khoản"
+            #taiKhoan="ngModel"
+            required
+            name="taiKhoan"
+            ngModel
+          />
+        </div>
+        <span *ngIf="taiKhoan.errors && (taiKhoan.touched || taiKhoan.dirty)">
+          *vui lòng nhập dô tài khoản</span
+        >
+        <div class="container__form__input">
+          <input
+            type="text"
+            placeholder="mật khẩu"
+            #matKhau="ngModel"
+            required
+            minlength="7"
+            maxlength="20"
+            name="matKhau"
+            ngModel
+          />
+        </div>
+        <p *ngIf="matKhau.errors && (matKhau.touched || matKhau.dirty)">
+          <span *ngIf="matKhau.errors.required">vùi lòng nhập mật khẩu</span>
+          <span *ngIf="matKhau.errors.minlength || matKhau.errors.maxlength">
+            mật khẩu phải từ 7 đến 20 ký tự
+          </span>
+        </p>
+        <div class="container__form__input">
+          <input
+            type="text"
+            placeholder="họ tên"
+            ngModel
+            [pattern]="
+              '^[a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ' +
+              'ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ' +
+              'ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\\s]+$'
+            "
+            #hoTen="ngModel"
+            required
+            name="hoTen"
+            ngModel
+          />
+        </div>
+        <p *ngIf="hoTen.errors && (hoTen.touched || hoTen.dirty)">
+          <span *ngIf="hoTen.errors.required">*họ tên không để trống</span>
+          <span *ngIf="hoTen.errors.pattern">*nhập họ tên không có số</span>
+        </p>
+        <div class="container__form__input">
+          <input
+            placeholder="nhập vào email"
+            type="email"
+            [pattern]="
+              '^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@' +
+              '[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{3,})$'
+            "
+            #email="ngModel"
+            required
+            name="email"
+            ngModel
+          />
+        </div>
+        <p *ngIf="email.errors && (email.touched || email.dirty)">
+          <span *ngIf="email.errors.required">*email không cho để trống</span>
+          <span *ngIf="email.errors.pattern">*email không đúng đinh dạng</span>
+        </p>
+        <div class="container__form__input">
+          <input
+            type="text"
+            placeholder="số điện thoại"
+            pattern="^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$"
+            #sodt="ngModel"
+            required
+            name="sdt"
+            ngModel
+          />
+        </div>
+        <p *ngIf="sodt.errors && (sodt.touched || sodt.dirty)">
+          <span *ngIf="sodt.errors.required">không để trống số điện thoại</span>
+          <span *ngIf="sodt.errors.pattern">số điện thoại không đúng</span>
+        </p>
+        <div class="container__form__input">
+          <select
+            value=""
+            #ml="ngModel"
+            required
+            name="maLoaiNguoiDung"
+            ngModel
+          >
+            <option value="" selected disabled hidden>phân quyền</option>
+            <option value="user">user</option>
+            <option value="admin">admin</option>
+          </select>
+        </div>
+        <p>
+          <span *ngIf="ml.errors && (ml.touched || ml.dirty)">
+            *bắt buộc phân quyền
+          </span>
+        </p>
+
+        <button
+          #buttonAdd
+          [disabled]="formDangKy.invalid"
+          class="btn btn-secondary mb-3"
+        >
+          thêm người dùng mới
+        </button>
+        <button
+          #buttonUpdate
+          style="display: none"
+          id="idUpdate"
+          class="btn btn-secondary mb-3"
+        >
+          cập nhật
+        </button>
+      </form>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12"></div>
+      </div>
+      <div class="row">
+        <div>
+          <button
+            (click)="cancel()"
+            #buttonCancel
+            style="display: none"
+            id="cancelUpdate"
+            class="btn btn-secondary mb-3"
+          >
+            hủy
+          </button>
+        </div>
+      </div>
+      <div class="findproduct">
+        <input
+          #input
+          (input)="findName(input)"
+          id="idInput"
+          type="text"
+          placeholder="nhập vào mã hoặc tên sp để tìm kiếm"
+        />
+      </div>
+
+      <div>
+        <div class="table">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>tài khoản</th>
+                <th>mật khẩu</th>
+                <th>họ tên</th>
+                <th>email</th>
+                <th>số điện thoại</th>
+                <th>loại người dùng</th>
+                <th>xóa</th>
+                <th>sửa</th>
+              </tr>
+            </thead>
+            <tbody id="contentProduct">
+              <tr *ngFor="let user of danhDanhUser">
+                <td>{{ user.taiKhoan }}</td>
+                <td>{{ user.matKhau }}</td>
+                <td>{{ user.hoTen }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.sdt }}</td>
+                <td>{{ user.maLoaiNguoiDung }}</td>
+                <td>
+                  <button
+                    class="btn btn-danger"
+                    #btndelete
+                    (click)="deleteUser(user.maNguoiDung)"
+                  >
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </td>
+                <td>
+                  <button
+                    class="btn btn-primary"
+                    #btnUpdate
+                    [attr.data-taiKhoan]="user.taiKhoan"
+                    [attr.data-matKhau]="user.matKhau"
+                    [attr.data-hoTen]="user.hoTen"
+                    [attr.data-email]="user.email"
+                    [attr.data-sdt]="user.sdt"
+                    [attr.data-maLoaiNguoiDung]="user.maLoaiNguoiDung"
+                    [attr.data-maNguoiDung]="user.maNguoiDung"
+                    (click)="update(btnUpdate)"
+                  >
+                    <i class="fa fa-edit"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

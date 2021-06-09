@@ -1,0 +1,104 @@
+.container__form span {
+  color: orange;
+  margin-left: 15%;
+}
+
+.container__form__input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.container__form__input input,
+.container__form__input textarea,
+.container__form__input select {
+  height: 50px;
+  width: 70%;
+  margin: 5px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin-top: 15px;
+  border: 2px orange solid;
+  padding: 5px;
+  border-radius: 15px;
+  outline: none;
+}
+
+.container button,
+.container input,
+.container textarea,
+.container select {
+  outline: none;
+  background-color: transparent;
+  border: 1px orange solid;
+  color: orange;
+}
+
+.container table {
+  border: 1px orange solid;
+}
+
+.container .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.container .row button {
+  margin-top: 15px;
+  height: 45px;
+  width: 500px;
+  color: #000000;
+  background-color: orange;
+  border: 1px orangered solid;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.container .row button:hover {
+  background-color: #000000;
+  color: orange;
+}
+
+.container .findproduct {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  margin-bottom: 15px;
+}
+
+.container .findproduct input {
+  width: 45%;
+  height: 35px;
+  padding: 15px;
+}
+
+.container .table table {
+  background-color: #003147;
+  color: orange;
+}
+
+.container .table th {
+  border: 1px #fff solid;
+}
+
+.container .table td {
+  border: 1px #fff solid;
+}
+
+.container .table tr {
+  border: 1px #fff solid;
+}

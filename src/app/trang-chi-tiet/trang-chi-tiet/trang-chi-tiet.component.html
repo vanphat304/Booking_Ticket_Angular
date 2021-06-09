@@ -70,7 +70,8 @@
           <iframe
             width="853"
             height="480"
-            src="https://www.youtube.com/embed/_QMLhx8oz3A"
+            *ngIf="safeUrl"
+            [src]="safeUrl"
             title="YouTube video player"
             frameborder="0"
             allowfullscreen

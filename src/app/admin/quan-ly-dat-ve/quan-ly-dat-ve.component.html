@@ -1,0 +1,141 @@
+<div class="tab-content" id="myTabContent">
+  <div
+    class="tab-pane fade show active"
+    id="home"
+    role="tabpanel"
+    aria-labelledby="home-tab"
+  >
+    <h1 class="display-4 text-center text-warning">quản lý danh sách phim</h1>
+    <div class="container">
+      <form class="container__form">
+        <div class="container__form__input">
+          <input type="text" placeholder="nhập vào đường dẫn hình" id="image" />
+        </div>
+        <span id="imageErr"></span>
+        <div class="container__form__input">
+          <input type="text" placeholder="nhập vào mã phim" id="idProduct" />
+        </div>
+        <span id="idErr"></span>
+        <div class="container__form__input">
+          <input
+            type="text"
+            placeholder="nhập vào tên sản phim"
+            id="nameProduct"
+          />
+        </div>
+        <div class="container__form__input">
+          <textarea
+            placeholder="nhập vào thông tin mô tả"
+            id="Decription"
+            cols="50"
+            rows="5"
+          ></textarea>
+        </div>
+        <div class="container__form__input">
+          <input
+            type="text"
+            id="priceProduct"
+            placeholder="nhập vào đạo diễn"
+          />
+        </div>
+        <div class="container__form__input">
+          <input
+            placeholder="nhập vào diễn viên"
+            type="text"
+            id="amoutProduct"
+          />
+        </div>
+        <div class="container__form__input">
+          <input type="text" id="priceProduct" placeholder="trailer" />
+        </div>
+        <div class="container__form__input">
+          <input type="text" placeholder="thời lượng " id="rating" />
+        </div>
+        <div class="container__form__input">
+          <input placeholder="nhap vao ngay" id="amoutProduct" type="date" />
+        </div>
+        <span id="typeErr"></span>
+      </form>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12"></div>
+      </div>
+      <div class="row">
+        <div>
+          <button id="addNewProduct" class="btn btn-secondary mb-3">
+            thêm phim mới
+          </button>
+          <button
+            style="display: none"
+            id="idUpdate"
+            class="btn btn-secondary mb-3"
+          >
+            cập nhật
+          </button>
+          <button
+            style="display: none"
+            id="cancelUpdate"
+            class="btn btn-secondary mb-3"
+          >
+            hủy
+          </button>
+        </div>
+      </div>
+      <div class="findproduct">
+        <input
+          id="idInput"
+          type="text"
+          placeholder="nhập vào mã hoặc tên sp để tìm kiếm"
+        />
+      </div>
+
+      <div>
+        <div class="table">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>hình ảnh</th>
+                <th>mã phim</th>
+                <th>tên phim</th>
+                <th>mô tả</th>
+                <th>đạo diễn</th>
+                <th>diễn viên</th>
+                <th>thời lượng</th>
+                <th>trailer</th>
+                <th>ngày khởi chiếu</th>
+                <th>xóa</th>
+                <th>sửa</th>
+              </tr>
+            </thead>
+            <tbody id="contentProduct">
+              <tr>
+                <td>
+                  <img style="width: 50px" src="" alt="" />
+                </td>
+                <td>item.id</td>
+                <td>item.name</td>
+                <td>item.description</td>
+                <td>item.price</td>
+                <td>item.inventory</td>
+                <td>item.rating</td>
+                <td>item.type</td>
+                <td>item.type</td>
+                <td>
+                  <button class="btn btn-danger">
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </td>
+                <td>
+                  <button class="btn btn-primary">
+                    <i class="fa fa-pencil"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

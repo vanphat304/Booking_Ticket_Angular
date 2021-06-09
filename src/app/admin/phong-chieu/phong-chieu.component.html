@@ -1,0 +1,82 @@
+<div class="tab-content" id="myTabContent">
+  <div>
+    <h1 class="display-4 text-center text-warning">quản lý phòng chiếu</h1>
+    <div class="container">
+      <form class="container__form">
+        <div class="container__form__input">
+          <input type="text" placeholder="nhập vào mã phòng" id="image" />
+        </div>
+        <div class="container__form__input">
+          <input type="text" placeholder="nhập vào tên phòng" id="idProduct" />
+        </div>
+      </form>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12"></div>
+      </div>
+      <div class="row">
+        <div>
+          <button id="addNewProduct" class="btn btn-secondary mb-3">
+            thêm phòng mới
+          </button>
+          <button
+            style="display: none"
+            id="idUpdate"
+            class="btn btn-secondary mb-3"
+          >
+            cập nhật
+          </button>
+          <button
+            style="display: none"
+            id="cancelUpdate"
+            class="btn btn-secondary mb-3"
+          >
+            hủy
+          </button>
+        </div>
+      </div>
+      <div class="findproduct">
+        <input
+          id="idInput"
+          type="text"
+          placeholder="nhập vào mã hoặc tên sp để tìm kiếm"
+        />
+      </div>
+
+      <div>
+        <div class="table">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>hình ảnh</th>
+                <th>mã phim</th>
+                <th>xóa</th>
+                <th>sửa</th>
+              </tr>
+            </thead>
+            <tbody id="contentProduct">
+              <tr>
+                <td>
+                  <img style="width: 50px" src="" alt="" />
+                </td>
+                <td>item.id</td>
+
+                <td>
+                  <button class="btn btn-danger">
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </td>
+                <td>
+                  <button class="btn btn-primary">
+                    <i class="fa fa-pencil"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

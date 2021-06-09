@@ -9,20 +9,8 @@ import { Observable } from 'rxjs';
 export class FilmService {
   constructor(private http: HttpClient) {}
   getListFilm(): Observable<any> {
-    // let url = 'https://6050ecd75346090017670d95.mockapi.io/timhieuangular/film/test'
-    // let obser = this.http.get(url).pipe(map((result:Response)=>result.json()))
-    // return obser ;
     const url = 'https://60b4a5e74ecdc10017481064.mockapi.io/listFilm';
-
-    // let params = new HttpParams();
-    // params = params.append('maNhom', 'GP01');
     return this.http.get<any[]>(url);
-
-    //   const url =
-    //
-    // let params = new HttpParams();
-    // params = params.append('maNhom', 'GP01');
-    // return this.http.get<Movie[]>(url, { params });
   }
   getFilmDetail(id: string): Observable<any> {
     const url = `https://60b4a5e74ecdc10017481064.mockapi.io/listFilm/${id}`;
@@ -47,5 +35,9 @@ export class FilmService {
   getbookingDetail(): Observable<any> {
     const url = `https://60b4a5e74ecdc10017481064.mockapi.io/datVe`;
     return this.http.get(url);
+  }
+  postFilm(values: any): Observable<any> {
+    const url = 'https://60b4a5e74ecdc10017481064.mockapi.io/listFilm';
+    return this.http.post(url, { ...values });
   }
 }
