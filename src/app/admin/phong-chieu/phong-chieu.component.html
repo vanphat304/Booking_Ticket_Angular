@@ -2,13 +2,72 @@
   <div>
     <h1 class="display-4 text-center text-warning">quản lý phòng chiếu</h1>
     <div class="container">
-      <form class="container__form">
+      <form
+        #target
+        #formRoom="ngForm"
+        (ngSubmit)="addformRoom(formRoom.value)"
+        class="container__form"
+      >
         <div class="container__form__input">
-          <input type="text" placeholder="nhập vào mã phòng" id="image" />
+          <input
+            type="text"
+            placeholder=""
+            style="display: none"
+            name="maPhong"
+            #maphong="ngModel"
+            ngModel
+          />
         </div>
         <div class="container__form__input">
-          <input type="text" placeholder="nhập vào tên phòng" id="idProduct" />
+          <input
+            type="text"
+            placeholder="nhập vào tên phòng"
+            #tenPhong="ngModel"
+            required
+            name="tenPhong"
+            ngModel
+          />
         </div>
+        <span *ngIf="tenPhong.errors && (tenPhong.touched || tenPhong.dirty)">
+          *tên phòng không để trống</span
+        >
+        <div class="container__form__input">
+          <input
+            type="text"
+            placeholder="nhập vào số lượng chỗ ngồi"
+            name="soLuongChoNgoi"
+            required
+            ngModel
+            #soLuongChoNgoi="ngModel"
+            pattern="^[1-9]\d*"
+          />
+        </div>
+        <p
+          *ngIf="
+            soLuongChoNgoi.errors &&
+            (soLuongChoNgoi.touched || soLuongChoNgoi.dirty)
+          "
+        >
+          <span *ngIf="soLuongChoNgoi.errors.required"
+            >*số lượng chỗ ngồi không cho để trống</span
+          >
+          <span *ngIf="soLuongChoNgoi.errors.pattern">*vui lòng nhập số</span>
+        </p>
+        <button
+          #buttonAdd
+          [disabled]="formRoom.invalid"
+          class="btn btn-secondary mb-3"
+        >
+          thêm phòng mới
+        </button>
+        <button
+          style="display: none"
+          [disabled]="formRoom.invalid"
+          #buttonUpdate
+          class="btn btn-secondary mb-3"
+        >
+          cập nhật
+        </button>
       </form>
     </div>
     <div class="container">
@@ -17,20 +76,11 @@
       </div>
       <div class="row">
         <div>
-          <button id="addNewProduct" class="btn btn-secondary mb-3">
-            thêm phòng mới
-          </button>
           <button
             style="display: none"
-            id="idUpdate"
+            #buttonCancel
             class="btn btn-secondary mb-3"
-          >
-            cập nhật
-          </button>
-          <button
-            style="display: none"
-            id="cancelUpdate"
-            class="btn btn-secondary mb-3"
+            (click)="cancel()"
           >
             hủy
           </button>
@@ -38,7 +88,8 @@
       </div>
       <div class="findproduct">
         <input
-          id="idInput"
+          #input
+          (input)="findName(input)"
           type="text"
           placeholder="nhập vào mã hoặc tên sp để tìm kiếm"
         />
@@ -49,27 +100,40 @@
           <table class="table table-bordered">
             <thead>
               <tr>
-                <th>hình ảnh</th>
-                <th>mã phim</th>
+                <th>mã phòng</th>
+                <th>tên phòng</th>
+                <th>số lượng chỗ ngồi</th>
                 <th>xóa</th>
                 <th>sửa</th>
               </tr>
             </thead>
-            <tbody id="contentProduct">
-              <tr>
+            <tbody>
+              <tr *ngFor="let room of listRoom">
                 <td>
-                  <img style="width: 50px" src="" alt="" />
+                  {{ room.maPhong }}
                 </td>
-                <td>item.id</td>
+                <td>{{ room.tenPhong }}</td>
+                <td>{{ room.soLuongChoNgoi }}</td>
 
                 <td>
-                  <button class="btn btn-danger">
+                  <button
+                    class="btn btn-danger"
+                    (click)="deleteRoom(room.maPhong)"
+                  >
                     <i class="fa fa-trash"></i>
                   </button>
                 </td>
                 <td>
-                  <button class="btn btn-primary">
-                    <i class="fa fa-pencil"></i>
+                  <button
+                    class="btn btn-primary"
+                    #btnUpdate
+                    [attr.data-tenPhong]="room.tenPhong"
+                    [attr.data-maPhong]="room.maPhong"
+                    [attr.data-soLuongChoNgoi]="room.soLuongChoNgoi"
+                    (click)="update(btnUpdate)"
+                    (click)="scroll(target)"
+                  >
+                    <i class="fa fa-edit"></i>
                   </button>
                 </td>
               </tr>

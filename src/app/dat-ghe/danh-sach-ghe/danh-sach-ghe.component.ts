@@ -28,7 +28,7 @@ export class DanhSachGheComponent implements OnInit {
       this.danhSachGheDangDat.push(ghe);
       console.log(this.danhSachGheDangDat);
       this.tongTien = this.danhSachGheDangDat.reduce((acc, value) => {
-        return acc + value.gia;
+        return acc + value.gia * 1;
       }, 0);
     } else {
       this.soGheDaDat--;

@@ -1,42 +1,93 @@
 <div class="tab-content" id="myTabContent">
   <div>
-    <h1 class="display-4 text-center text-warning">quản lý lịch chiếu</h1>
+    <h1 #target class="display-4 text-center text-warning">
+      quản lý lịch chiếu
+    </h1>
     <div class="container">
-      <form class="container__form">
-        <div class="container__form__input">
-          <input type="text" placeholder="mã lịch chiếu" id="image" />
+      <form
+        #formQuanLyLichChieu="ngForm"
+        (ngSubmit)="themLichChieu(formQuanLyLichChieu.value)"
+        class="container__form"
+      >
+        <div class="container__form__input" style="display: none">
+          <input
+            type="text"
+            placeholder="mã lịch chiếu"
+            value=""
+            name="maLichChieu"
+            #maLichChieu="ngModel"
+            ngModel
+          />
         </div>
         <div class="container__form__input">
-          <select name="" id="">
+          <select value="" required name="maPhim" #maPhim="ngModel" ngModel>
             <option value="">chọn mã phim</option>
-            <option value="">film_001</option>
-            <option value="">film_002</option>
+            <option *ngFor="let item of listMaPhim" [value]="item">
+              {{ item }}
+            </option>
           </select>
         </div>
+        <span *ngIf="maPhim.errors && (maPhim.touched || maPhim.dirty)">
+          *vui chọn mã phim</span
+        >
         <div class="container__form__input">
-          <select name="" id="">
+          <select value="" required name="maPhong" #maPhong="ngModel" ngModel>
             <option value="">chọn phòng chiếu</option>
-            <option value="">ph_001</option>
-            <option value="">ph_002</option>
+            <option *ngFor="let item of listMaPhong" [value]="item">
+              {{ item }}
+            </option>
           </select>
         </div>
+        <span *ngIf="maPhong.errors && (maPhong.touched || maPhong.dirty)">
+          *vui chọn mã phòng</span
+        >
         <div class="container__form__input">
           <input
+            required
+            name="thoiGianBD"
+            #thoiGianBD="ngModel"
+            ngModel
             placeholder="thời gian bắt đầu"
-            id="amoutProduct"
             type="datetime-local"
           />
         </div>
-        <div class="container__form__input">
-          <input type="text" id="priceProduct" placeholder="giá vé" />
-        </div>
+        <span
+          *ngIf="thoiGianBD.errors && (thoiGianBD.touched || thoiGianBD.dirty)"
+        >
+          *vui chọn thời gian bắt đầu</span
+        >
         <div class="container__form__input">
           <input
             type="text"
-            id="priceProduct"
-            placeholder="nhập vào tên phim"
+            name="giaVe"
+            #giaVe="ngModel"
+            ngModel
+            required
+            placeholder="giá vé(vnd)"
           />
         </div>
+        <p>
+          <span *ngIf="giaVe.errors && (giaVe.touched || giaVe.dirty)">
+            *vui nhập giá vé</span
+          >
+        </p>
+
+        <button
+          #buttonAdd
+          [disabled]="formQuanLyLichChieu.invalid"
+          class="btn btn-secondary mb-3"
+        >
+          thêm lịch chiếumới
+        </button>
+        <button
+          #buttonUpdate
+          [disabled]="formQuanLyLichChieu.invalid"
+          style="display: none"
+          id="idUpdate"
+          class="btn btn-secondary mb-3"
+        >
+          cập nhật
+        </button>
       </form>
     </div>
     <div class="container">
@@ -45,19 +96,10 @@
       </div>
       <div class="row">
         <div>
-          <button id="addNewProduct" class="btn btn-secondary mb-3">
-            thêm lịch chiếumới
-          </button>
           <button
+            (click)="cancel()"
+            #buttonCancel
             style="display: none"
-            id="idUpdate"
-            class="btn btn-secondary mb-3"
-          >
-            cập nhật
-          </button>
-          <button
-            style="display: none"
-            id="cancelUpdate"
             class="btn btn-secondary mb-3"
           >
             hủy
@@ -66,9 +108,10 @@
       </div>
       <div class="findproduct">
         <input
-          id="idInput"
+          #input
+          (input)="findName(input)"
           type="text"
-          placeholder="nhập vào mã hoặc tên sp để tìm kiếm"
+          placeholder="nhập mã phim để tìm kiếm"
         />
       </div>
 
@@ -82,29 +125,40 @@
                 <th>mã phòng</th>
                 <th>thời gian bắt đầu</th>
                 <th>giá vé</th>
-                <th>tên phim</th>
                 <th>xóa</th>
                 <th>sửa</th>
               </tr>
             </thead>
             <tbody id="contentProduct">
-              <tr>
+              <tr *ngFor="let showntime of listShownTime">
                 <td>
-                  <img style="width: 50px" src="" alt="" />
+                  {{ showntime.maLichChieu }}
                 </td>
-                <td>item.id</td>
-                <td>item.name</td>
-                <td>item.description</td>
-                <td>item.price</td>
-                <td>item.inventory</td>
+                <td>{{ showntime.maPhim }}</td>
+                <td>{{ showntime.maPhong }}</td>
+                <td>{{ showntime.thoiGianBD }}</td>
+                <td>{{ showntime.giaVe }}</td>
                 <td>
-                  <button class="btn btn-danger">
+                  <button
+                    class="btn btn-danger"
+                    (click)="deleteShownTime(showntime.maLichChieu)"
+                  >
                     <i class="fa fa-trash"></i>
                   </button>
                 </td>
                 <td>
-                  <button class="btn btn-primary">
-                    <i class="fa fa-trash"></i>
+                  <button
+                    class="btn btn-primary"
+                    #btnUpdate
+                    [attr.data-maPhim]="showntime.maPhim"
+                    [attr.data-maPhong]="showntime.maPhong"
+                    [attr.data-thoiGianBD]="showntime.thoiGianBD"
+                    [attr.data-giaVe]="showntime.giaVe"
+                    [attr.data-maLichChieu]="showntime.maLichChieu"
+                    (click)="update(btnUpdate)"
+                    (click)="scroll(target)"
+                  >
+                    <i class="fa fa-edit"></i>
                   </button>
                 </td>
               </tr>

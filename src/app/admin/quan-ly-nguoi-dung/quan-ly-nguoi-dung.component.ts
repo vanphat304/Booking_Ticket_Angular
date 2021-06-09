@@ -33,7 +33,7 @@ export class QuanLyNguoiDungComponent implements OnInit {
     } else {
       this.auth.signup(values).subscribe({
         next: (result) => {
-          alert('đăng ký thành công');
+          alert('thêm người dùng thành công');
           this.formdk.reset();
         },
         error: (err) => {
@@ -43,7 +43,7 @@ export class QuanLyNguoiDungComponent implements OnInit {
       });
       this.auth.signupfa(values).subscribe({
         next: () => {
-          alert('dk thanh cong');
+          // alert('dk thanh cong');
           this.formdk.reset();
         },
       });
@@ -76,7 +76,7 @@ export class QuanLyNguoiDungComponent implements OnInit {
   deleteUser(values: any) {
     this.auth.deleteUser(values).subscribe({
       next: () => {
-        alert('xóa khách hàng thành công');
+        alert('xóa người dùng thành công');
       },
     });
   }

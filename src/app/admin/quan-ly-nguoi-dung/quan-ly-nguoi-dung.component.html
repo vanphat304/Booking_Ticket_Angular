@@ -128,6 +128,7 @@
         </button>
         <button
           #buttonUpdate
+          [disabled]="formDangKy.invalid"
           style="display: none"
           id="idUpdate"
           class="btn btn-secondary mb-3"
@@ -159,7 +160,7 @@
           (input)="findName(input)"
           id="idInput"
           type="text"
-          placeholder="nhập vào mã hoặc tên sp để tìm kiếm"
+          placeholder="nhập vào tên tài khoản để tìm kiếm"
         />
       </div>
 

@@ -40,6 +40,25 @@
   border: 1px orange solid;
   color: orange;
 }
+.container {
+  form {
+    button {
+      margin-top: 15px;
+      height: 45px;
+      width: 500px;
+      color: #000000;
+      background-color: orange;
+      border: 1px orangered solid;
+      -webkit-transition: all 0.5s;
+      transition: all 0.5s;
+      transform: translate(58%, 10px);
+    }
+    button:hover {
+      background-color: #000000;
+      color: orange;
+    }
+  }
+}
 
 .container table {
   border: 1px orange solid;
@@ -63,6 +82,7 @@
   border: 1px orangered solid;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
+  transform: translate(6%, 0px);
 }
 
 .container .row button:hover {

@@ -17,7 +17,7 @@ export class FilmService {
     return this.http.get<any[]>(url);
   }
   getShowntimes(): Observable<any> {
-    const url = 'https://60b4a5e74ecdc10017481064.mockapi.io/lichKhoiChieu';
+    const url = 'https://60b4b3e84ecdc10017481356.mockapi.io/choNgoi';
     return this.http.get<any[]>(url);
   }
   getSlot(maLichChieu: any): Observable<any> {
@@ -39,5 +39,13 @@ export class FilmService {
   postFilm(values: any): Observable<any> {
     const url = 'https://60b4a5e74ecdc10017481064.mockapi.io/listFilm';
     return this.http.post(url, { ...values });
+  }
+  updateFilm(values: any): Observable<any> {
+    const url = `https://60b4a5e74ecdc10017481064.mockapi.io/listFilm/${values.maPhim}`;
+    return this.http.put(url, { ...values });
+  }
+  deleteFilm(id: any): Observable<any> {
+    const url = `https://60b4a5e74ecdc10017481064.mockapi.io/listFilm/${id}`;
+    return this.http.delete(url);
   }
 }

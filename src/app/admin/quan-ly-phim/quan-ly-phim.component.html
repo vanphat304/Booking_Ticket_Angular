@@ -1,6 +1,8 @@
 <div class="tab-content" id="myTabContent">
   <div>
-    <h1 class="display-4 text-center text-warning">quản lý danh sách phim</h1>
+    <h1 #target class="display-4 text-center text-warning">
+      quản lý danh sách phim
+    </h1>
     <div class="container">
       <form
         #formQuanLyFilm="ngForm"
@@ -21,7 +23,13 @@
           *bắt buộc nhập</span
         >
         <div style="display: none" class="container__form__input">
-          <input type="text" placeholder="nhập vào mã phim" name="maPhim" />
+          <input
+            type="text"
+            placeholder="nhập vào mã phim"
+            name="maPhim"
+            #maPhim="ngModel"
+            ngModel
+          />
         </div>
         <span id="idErr"></span>
         <div class="container__form__input">
@@ -116,6 +124,7 @@
             ngModel
             #ngayKhoiChieu="ngModel"
             type="date"
+            value=""
           />
         </div>
         <p>
@@ -128,13 +137,21 @@
             *ngày khởi chiếu không để trống bắt buộc nhập</span
           >
         </p>
-        <button id="addNewProduct" class="btn btn-secondary mb-3">
+
+        <button
+          #buttonAdd
+          id="addNewProduct"
+          class="btn btn-secondary mb-3"
+          [disabled]="formQuanLyFilm.invalid"
+        >
           thêm phim mới
         </button>
         <button
+          #buttonUpdate
           style="display: none"
           id="idUpdate"
           class="btn btn-secondary mb-3"
+          [disabled]="formQuanLyFilm.invalid"
         >
           cập nhật
         </button>
@@ -147,6 +164,8 @@
       <div class="row">
         <div>
           <button
+            (click)="cancel()"
+            #buttonCancel
             style="display: none"
             id="cancelUpdate"
             class="btn btn-secondary mb-3"
@@ -157,9 +176,11 @@
       </div>
       <div class="findproduct">
         <input
+          #input
+          (input)="findName(input)"
           id="idInput"
           type="text"
-          placeholder="nhập vào mã hoặc tên sp để tìm kiếm"
+          placeholder="nhập vào tên phim tìm kiếm"
         />
       </div>
 
@@ -182,25 +203,42 @@
               </tr>
             </thead>
             <tbody id="contentProduct">
-              <tr>
+              <tr *ngFor="let film of listFilm">
                 <td>
-                  <img style="width: 50px" src="" alt="" />
+                  <img style="width: 50px" [src]="film.hinhAnh" alt="" />
                 </td>
-                <td>item.id</td>
-                <td>item.name</td>
-                <td>item.description</td>
-                <td>item.price</td>
-                <td>item.inventory</td>
-                <td>item.rating</td>
-                <td>item.type</td>
-                <td>item.type</td>
+                <td>{{ film.maPhim }}</td>
+                <td>{{ film.tenPhim }}</td>
+                <td>{{ film.moTa | slice: 0:15 }}...</td>
+                <td>{{ film.daoDien }}</td>
+                <td>{{ film.dienVien }}</td>
+                <td>{{ film.thoiLuong }}</td>
+                <td>{{ film.trailer }}</td>
+                <td>{{ film.ngayKhoiChieu }}</td>
                 <td>
-                  <button class="btn btn-danger">
+                  <button
+                    class="btn btn-danger"
+                    (click)="deleteFilm(film.maPhim)"
+                  >
                     <i class="fa fa-trash"></i>
                   </button>
                 </td>
                 <td>
-                  <button class="btn btn-primary">
+                  <button
+                    class="btn btn-primary"
+                    #btnUpdate
+                    [attr.data-hinhAnh]="film.hinhAnh"
+                    [attr.data-maPhim]="film.maPhim"
+                    [attr.data-tenPhim]="film.tenPhim"
+                    [attr.data-moTa]="film.moTa"
+                    [attr.data-daoDien]="film.daoDien"
+                    [attr.data-dienVien]="film.dienVien"
+                    [attr.data-thoiLuong]="film.thoiLuong"
+                    [attr.data-trailer]="film.trailer"
+                    [attr.data-ngayKhoiChieu]="film.ngayKhoiChieu"
+                    (click)="update(btnUpdate)"
+                    (click)="scroll(target)"
+                  >
                     <i class="fa fa-edit"></i>
                   </button>
                 </td>
